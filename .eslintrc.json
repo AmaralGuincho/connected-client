@@ -1,5 +1,5 @@
 {
-    "extends": "airbnb",
+    "extends": "@meteorjs/eslint-config-meteor",
     "plugins": [
         "react",
         "jsx-a11y",

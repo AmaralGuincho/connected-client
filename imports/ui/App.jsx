@@ -10,11 +10,12 @@ import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // External Components
-import AppDrawer from './components/AppDrawer.jsx';
+import AppNav from './components/AppNav.jsx';
 
 // Pages Import
 import Home from './pages/home.jsx';
 import Dashboard from './pages/Dashboard.jsx';
+import Funcionarios from './pages/Funcionarios.jsx';
 
 // Material-UI REQUIREMENT
 injectTapEventPlugin();
@@ -22,11 +23,12 @@ injectTapEventPlugin();
 const App = () => (
   <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
     <div className="app-shell">
-      <AppDrawer title="Amaral Guincho" />
+      <AppNav title="Amaral Guincho" />
 
       <div className="content">
         <Route exact path="/" component={Home} />
         <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/funcionarios" component={Funcionarios} />
       </div>
     </div>
   </MuiThemeProvider>

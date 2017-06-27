@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 
 import { Form, Field } from 'simple-react-form';
@@ -8,10 +9,12 @@ class AutoForm extends Component {
     super(props);
     this.state = {};
   }
-  
+
   render() {
-    return(
-      <Form state={this.state} onChange={changes => this.setState(changes)}
-    )
+    return (
+      <Form state={this.state} onChange={changes => this.setState(changes)}>
+        {}
+      </Form>
+    );
   }
 }

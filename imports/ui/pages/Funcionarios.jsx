@@ -1,28 +1,19 @@
-import React from 'react';
-import { Form, Field } from 'simple-react-form';
-import DatePicker from 'simple-react-form-material-ui/lib/date-picker';
-import Text from 'simple-react-form-material-ui/lib/text';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-class PostsCreate extends React.Component {
+// Meteor React container API
+import { createContainer } from 'meteor/react-meteor-data';
 
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+// Backend structure
+import FuncionariosApi from '../../api/Funcionarios';
 
-  render() {
-    return (
-      <div>
-        <Form state={this.state} onChange={changes => this.setState(changes)}>
-          <Field fieldName="name" label="Name" type={Text} />
-          <Field fieldName="date" label="A Date" type={DatePicker} />
-        </Form>
-        <p>
-          My name is {this.state.name}
-        </p>
-      </div>
-    );
-  }
-}
+// Local Components
+import Creator from '../components/Creator.jsx';
 
-export default PostsCreate;
+const Funcionarios = props => (
+  <Creator api={FuncionariosApi} title="Funcionarios" />
+);
+
+export default createContainer(() => ({
+  funcionarios: FuncionariosApi.find({}, { sort: { createdAt: -1 } }).fetch(),
+}), Funcionarios);

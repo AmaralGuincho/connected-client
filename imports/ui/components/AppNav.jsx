@@ -1,17 +1,15 @@
-  import React, { Component } from 'react';
+  import React, { Component, Children } from 'react';
   import PropType from 'prop-types';
-
-  import { Link } from 'react-router-dom';
 
 // Material-UI imports
   import AppBar from 'material-ui/AppBar';
   import Drawer from 'material-ui/Drawer';
-  import MenuItem from 'material-ui/MenuItem';
 
   class AppNav extends Component {
 
     static propTypes = {
       title: PropType.string.isRequired,
+      children: PropType.node.isRequired,
     }
 
     constructor(props) {
@@ -30,6 +28,7 @@
     }
 
     render() {
+      const children = this.props.children;
       return (
         <div>
           <AppBar
@@ -42,22 +41,13 @@
             open={this.state.isDrawerOpen}
             onRequestChange={open => this.setState({ isDrawerOpen: open })}
           >
-            {this.drawerElements}
-            <MenuItem
-              primaryText={'Dashboard'}
-              containerElement={<Link to="/dashboard" />}
-              onTouchTap={this.toggleDrawer}
-            />
-            <MenuItem
-              primaryText={'Home'}
-              containerElement={<Link to="/home" />}
-              onTouchTap={this.toggleDrawer}
-            />
-            <MenuItem
-              primaryText={'Funcionarios'}
-              containerElement={<Link to="/funcionarios" />}
-              onTouchTap={this.toggleDrawer}
-            />
+            {
+              Children.map(children, child => (
+                React.cloneElement(child, {
+                  onTouchTap: this.toggleDrawer,
+                })
+              ))
+            }
           </Drawer>
         </div>
       );

@@ -17,9 +17,9 @@ const PageBase = (props) => {
 
       <Paper style={globalStyles.paper} zDepth={depth}>
         <h3 style={globalStyles.title}>{title}</h3>
+        <Divider style={globalStyles.divider} />
         <h3 style={globalStyles.subtitle}>{subtitle}</h3>
 
-        <Divider />
         {props.children}
 
         <div style={globalStyles.clear} />

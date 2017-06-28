@@ -1,8 +1,10 @@
 {
-    "extends": "@meteorjs/eslint-config-meteor",
-    "plugins": [
-        "react",
-        "jsx-a11y",
-        "import"
-    ]
+  "extends": "@meteorjs/eslint-config-meteor",
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "import",
+    "meteor"
+  ]
+
 }

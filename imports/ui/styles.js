@@ -15,11 +15,14 @@ const styles = {
     fontSize: 24,
     fontWeight: typography.fontWeightLight,
     marginBottom: 0,
+    paddingBottom: 5,
   },
   subtitle: {
     fontSize: 18,
     fontWeight: typography.fontWeightLight,
     marginBottom: 5,
+    marginTop: 0,
+    paddingTop: 5,
   },
   paper: {
     paddingTop: 10,

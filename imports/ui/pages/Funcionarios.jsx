@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 
 // Meteor React container API
 import { createContainer } from 'meteor/react-meteor-data';
@@ -10,10 +9,10 @@ import FuncionariosApi from '../../api/Funcionarios';
 // Local Components
 import Creator from '../components/Creator.jsx';
 
-const Funcionarios = props => (
+const Funcionarios = () => (
   <Creator api={FuncionariosApi} title="Funcionarios" />
 );
 
 export default createContainer(() => ({
-  funcionarios: FuncionariosApi.find({}, { sort: { createdAt: -1 } }).fetch(),
+  funcionarios: FuncionariosApi.find({}, { sort: { createdAt: -1 } }).fetch,
 }), Funcionarios);

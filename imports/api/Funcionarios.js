@@ -1,3 +1,5 @@
+/* eslint import/no-unresolved: 1*/
+
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Match } from 'meteor/check';

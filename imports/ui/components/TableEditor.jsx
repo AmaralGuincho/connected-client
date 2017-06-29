@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+// Material-UI Imports
 import {
   Table,
   TableBody,
@@ -11,28 +12,36 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-
 import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentCreate from 'material-ui/svg-icons/content/create';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import { pink500, grey200, grey500 } from 'material-ui/styles/colors';
-
 import { RaisedButton } from 'material-ui';
 
+// Global Styles
 import globalStyles from '../styles.js';
 
+// Local Components
 import PageBase from './PageBase.jsx';
 
-class TableEditor extends Component {
 
+class TableEditor extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    data: PropTypes.array,
-  }
+    data: PropTypes.arrayOf(PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.object,
+    ])).isRequired,
+    api: PropTypes.objectOf(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array,
+      PropTypes.object,
+      PropTypes.func,
+      PropTypes.bool,
+    ])).isRequired,
+  };
 
-  state={
-
+  state = {
+    selectedRowDataId: null,
   }
 
   styles = {
@@ -50,9 +59,17 @@ class TableEditor extends Component {
     },
   };
 
-  logUser(userIndex) {
+  contentId(userIndex) {
     const data = this.props.data;
-    console.log(data[userIndex].name);
+    this.setState({
+      selectedRowDataId: data[userIndex]._id,
+    });
+  }
+
+  disableSelectedRow() {
+    const api = this.props.api;
+    const dataId = this.state.selectedRowDataId;
+    api.update({ _id: dataId }, { enabled: false });
   }
 
   render() {
@@ -73,7 +90,7 @@ class TableEditor extends Component {
         >
           <Table
             selectable
-            onRowSelection={selection => this.logUser(selection)}
+            onRowSelection={selection => this.contentId(selection)}
           >
             <TableHeader
               displaySelectAll={false}
@@ -91,21 +108,37 @@ class TableEditor extends Component {
               showRowHover
             >
               {
-                this.props.data.map((row, index) => (
-                  <TableRow id={index}>
-                    <TableRowColumn>
-                      {`${row.name} ${(row.lastname) ? row.lastname : ''}`}
-                    </TableRowColumn>
-                    <TableRowColumn>{row.phone}</TableRowColumn>
-                    <TableRowColumn>{row.occupation}</TableRowColumn>
-                  </TableRow>
-                ))
+                this.props.data.map((row, index) => {
+                  if (row.enabled) {
+                    return (
+                      <TableRow id={index}>
+                        <TableRowColumn>
+                          {`${row.name} ${(row.lastname) ? row.lastname : ''}`}
+                        </TableRowColumn>
+                        <TableRowColumn>{row.phone}</TableRowColumn>
+                        <TableRowColumn>{row.occupation}</TableRowColumn>
+                      </TableRow>
+                    );
+                  }
+                  return null;
+                })
               }
             </TableBody>
             <TableFooter>
-              <div styles={globalStyles.clear}>
-                <RaisedButton label="Editar" style={this.styles.editButton} />
-                <RaisedButton label="Deletar" secondary style={this.styles.editButton} />
+              <div style={globalStyles.clear}>
+                <RaisedButton
+                  label="Editar"
+                  style={this.styles.editButton}
+                  containerElement={
+                    <Link to={`/${this.props.name}/update:id`} />
+                  }
+                />
+                <RaisedButton
+                  secondary
+                  label="Deletar"
+                  style={this.styles.editButton}
+                  onTouchTap={this.disableSelectedRow}
+                />
               </div>
             </TableFooter>
           </Table>

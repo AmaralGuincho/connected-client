@@ -17,7 +17,13 @@ class Creator extends Component {
 
   static propTypes = {
     title: PropTypes.string.isRequired,
-    api: PropTypes.shape.isRequired,
+    api: PropTypes.objectOf(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array,
+      PropTypes.object,
+      PropTypes.func,
+      PropTypes.bool,
+    ])).isRequired,
   }
 
   constructor(props) {
@@ -60,6 +66,7 @@ class Creator extends Component {
       });
 
       const securityValues = {
+        enabled: true,
         createdAt: Date.now(),
       };
 

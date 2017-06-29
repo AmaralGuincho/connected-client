@@ -24,7 +24,11 @@ const Funcionarios = props => (
 );
 
 Funcionarios.propTypes = {
-  funcionarios: PropTypes.shape.isRequired,
+  funcionarios: PropTypes.arrayOf(PropTypes.object),
+};
+
+Funcionarios.defaultProps = {
+  funcionarios: null,
 };
 
 export default createContainer(() => ({

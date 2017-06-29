@@ -27,6 +27,7 @@ const CrudHub = props => (
             data={props.data}
             title={props.label}
             name={props.name}
+            api={props.api}
           />
           )}
       />
@@ -39,8 +40,17 @@ const CrudHub = props => (
 CrudHub.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  api: PropTypes.node.isRequired,
-  data: PropTypes.node.isRequired,
+  data: PropTypes.arrayOf(PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ])).isRequired,
+  api: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.func,
+    PropTypes.bool,
+  ])).isRequired,
 };
 
 export default CrudHub;

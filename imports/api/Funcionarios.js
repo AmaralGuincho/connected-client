@@ -78,6 +78,14 @@ const FuncionariosSchema = new SimpleSchema({
       type: Text,
     },
   },
+  phone: {
+    type: String,
+    label: 'Celular',
+    optional: true,
+    srt: {
+      type: Text,
+    },
+  },
   cep: {
     type: String,
     label: 'CEP',

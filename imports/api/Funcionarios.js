@@ -5,7 +5,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Match } from 'meteor/check';
 
 import Text from 'simple-react-form-material-ui/lib/text';
-import DatePicker from 'simple-react-form-material-ui/lib/date-picker';
+// import DatePicker from 'simple-react-form-material-ui/lib/date-picker';
 
 SimpleSchema.extendOptions({
   srt: Match.Optional(Object),
@@ -39,11 +39,11 @@ const FuncionariosSchema = new SimpleSchema({
     },
   },
   dob: {
-    type: String,
+    type: Date,
     label: 'Nascimento',
     optional: true,
     srt: {
-      type: DatePicker,
+      type: Text,
     },
   },
   cpf: {
@@ -101,6 +101,12 @@ const FuncionariosSchema = new SimpleSchema({
     srt: {
       type: Text,
     },
+  },
+  createdAt: {
+    type: Date,
+  },
+  enabled: {
+    type: String,
   },
 });
 

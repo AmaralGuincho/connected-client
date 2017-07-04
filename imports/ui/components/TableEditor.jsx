@@ -12,9 +12,9 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
-import { RaisedButton } from 'material-ui';
+
+import AddIcon from 'material-ui-icons/Add';
+import { Button } from 'material-ui/Button';
 
 // Global Styles
 import globalStyles from '../styles.js';
@@ -75,13 +75,13 @@ class TableEditor extends Component {
   render() {
     return (
       <div>
-        <FloatingActionButton
-          style={this.styles.floatingActionButton}
+        <Button
+          fab
           zDepth={2}
           containerElement={<Link to={`/${this.props.name}/create`} />}
         >
-          <ContentAdd />
-        </FloatingActionButton>
+          <AddIcon />
+        </Button>
 
         <PageBase
           title={this.props.title}
@@ -126,14 +126,14 @@ class TableEditor extends Component {
             </TableBody>
             <TableFooter>
               <div style={globalStyles.clear}>
-                <RaisedButton
+                <Button
                   label="Editar"
                   style={this.styles.editButton}
                   containerElement={
                     <Link to={`/${this.props.name}/update:id`} />
                   }
                 />
-                <RaisedButton
+                <Button
                   secondary
                   label="Deletar"
                   style={this.styles.editButton}

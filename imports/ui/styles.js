@@ -1,11 +1,10 @@
-import { typography } from 'material-ui/styles';
+
 import { grey500, grey100 } from 'material-ui/styles/colors';
 
 const styles = {
   navigation: {
     fontSize: 15,
     fontFamily: 'Roboto',
-    fontWeight: typography.fontWeightLight,
     color: grey500,
     paddingTop: 5,
     paddingBottom: 5,
@@ -13,13 +12,11 @@ const styles = {
   },
   title: {
     fontSize: 24,
-    fontWeight: typography.fontWeightLight,
     marginBottom: 0,
     paddingBottom: 5,
   },
   subtitle: {
     fontSize: 18,
-    fontWeight: typography.fontWeightLight,
     marginBottom: 5,
     marginTop: 0,
     paddingTop: 5,

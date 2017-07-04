@@ -7,7 +7,7 @@ import { Form } from 'simple-react-form';
 import { Link } from 'react-router-dom';
 
 //  Material-UI Elements
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from 'material-ui/Button';
 import Dialog from 'material-ui/Dialog';
 
 // Local Components
@@ -121,11 +121,11 @@ class Creator extends Component {
         />
 
         <div style={this.styles.buttons}>
-          <RaisedButton
+          <Button
             label={'Cancelar'}
             containerElement={<Link to="/" />}
           />
-          <RaisedButton
+          <Button
             primary
             label={'Cadastrar'}
             onTouchTap={this.handleSubmit}
@@ -138,11 +138,11 @@ class Creator extends Component {
           onRequestClose={this.closeDialog}
           actions={
             <div>
-              <RaisedButton
+              <Button
                 label={'Continuar Cadastrando'}
                 onTouchTap={this.clearField}
               />
-              <RaisedButton
+              <Button
                 primary
                 label={'Ok'}
                 containerElement={<Link to="/" />}

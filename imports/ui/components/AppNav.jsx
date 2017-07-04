@@ -29,24 +29,9 @@ const style = createStyleSheet('AppNav', theme => ({
       WebkitFontSmoothing: 'antialiased', // Antialiasing.
       MozOsxFontSmoothing: 'grayscale', // Antialiasing.
     },
-    img: {
-      maxWidth: '100%',
-      height: 'auto',
-      width: 'auto',
-    },
-  },
-  appFrame: {
-    display: 'flex',
-    alignItems: 'stretch',
-    minHeight: '100vh',
-    width: '100%',
   },
   grow: {
     flex: '1 1 auto',
-  },
-  title: {
-    marginLeft: 24,
-    flex: '0 1 auto',
   },
   appBar: {
     transition: theme.transitions.create('width'),
@@ -54,6 +39,18 @@ const style = createStyleSheet('AppNav', theme => ({
   appBarHome: {
     backgroundColor: 'transparent',
     boxShadow: 'none',
+  },
+  paper: {
+    width: 250,
+    backgroundColor: theme.palette.background.paper,
+  },
+  icon: {
+    color: 'white',
+  },
+  title: {
+    marginLeft: 24,
+    flex: '0 1 auto',
+    color: 'white',
   },
   [theme.breakpoints.up('lg')]: {
     drawer: {
@@ -89,15 +86,24 @@ class AppNav extends Component {
     // Dock drawer on larger  'lg ' devices
     const isDrawerDocked = isWidthUp('lg', width);
 
+    let navIconClass = classes.icon;
+    let appBarClass = classes.appBar;
+
+    if (isDrawerDocked) {
+      appBarClass += ` ${classes.appBarShift}`;
+      navIconClass += ` ${classes.navIconHide}`;
+    } else {
+      appBarClass += `${classes.appBarHome}`;
+    }
+
     return (
       <div >
-        <AppBar>
-          <Toolbar className={classes.appBar}>
+        <AppBar className={appBarClass}>
+          <Toolbar>
 
             <IconButton
-              color="contrast"
               onClick={this.handleDrawerToggle}
-              className={classes.icon}
+              className={navIconClass}
             >
               <MenuIcon />
             </IconButton>
@@ -110,18 +116,24 @@ class AppNav extends Component {
             >
               {title}
             </Typography>
+            <div className={classes.grow} />
           </Toolbar>
         </AppBar>
 
         <Drawer
-          anchor="left"
           onRequestClose={this.handleDrawerClose}
           onClick={this.handleDrawerClose}
           docked={isDrawerDocked}
           className={classes.drawer}
+          classes={{
+            paper: classes.paper,
+          }}
           open={isDrawerDocked || this.state.isDrawerOpen}
+          keepMounted
         >
-          {children}
+          <div className={classes.nav}>
+            {children}
+          </div>
         </Drawer>
       </div>
     );

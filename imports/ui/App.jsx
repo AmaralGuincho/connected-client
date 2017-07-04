@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 
+import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+
 // External Components
 import AppNav from './components/AppNav.jsx';
 
@@ -9,14 +11,14 @@ import Home from './pages/home.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Funcionarios from './pages/Funcionarios.jsx';
 
-// Style
-import theme from './theme';
 
 function App() {
   return (
     <div>
       <AppNav title="Amaral Guincho" >
-        <h1>hello</h1>
+        <ListItem button>
+          <ListItemText primary="Home" />
+        </ListItem>
       </AppNav>
 
       <div className="content" >

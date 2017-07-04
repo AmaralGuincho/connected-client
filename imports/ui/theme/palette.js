@@ -2,7 +2,7 @@ import createPalette from 'material-ui/styles/palette';
 import {
   lightBlue,
   pink,
-  blueGrey,
+  grey,
  } from 'material-ui/styles/colors';
 
 const palette = createPalette({
@@ -11,7 +11,7 @@ const palette = createPalette({
   type: 'light',
 });
 
-palette.text.primary = blueGrey[50];
+palette.text.primary = grey[900];
 palette.text.secondary = lightBlue;
 
 export default palette;

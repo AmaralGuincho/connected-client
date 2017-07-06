@@ -5,6 +5,7 @@ import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 
 // External Components
 import AppNav from './components/AppNav.jsx';
+import DrawerButton from './components/DrawerButton.jsx';
 
 // Pages Import
 import Home from './pages/home.jsx';
@@ -16,9 +17,7 @@ function App() {
   return (
     <div>
       <AppNav title="Amaral Guincho" >
-        <ListItem button>
-          <ListItemText primary="Home" />
-        </ListItem>
+        <DrawerButton text="Home" to="/" />
       </AppNav>
 
       <div className="content" >

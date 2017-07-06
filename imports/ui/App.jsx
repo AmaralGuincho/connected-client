@@ -1,7 +1,5 @@
 import React from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
-
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import { Route, Switch } from 'react-router-dom';
 
 // External Components
 import AppNav from './components/AppNav.jsx';
@@ -18,6 +16,7 @@ function App() {
     <div>
       <AppNav title="Amaral Guincho" >
         <DrawerButton text="Home" to="/" />
+        <DrawerButton text="Funcionarios" to="/funcionarios" />
       </AppNav>
 
       <div className="content" >

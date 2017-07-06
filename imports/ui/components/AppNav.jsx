@@ -143,7 +143,6 @@ class AppNav extends Component {
 AppNav.propTypes = {
   title: PropTypes.string,
   children: PropTypes.node.isRequired,
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
   width: PropTypes.string.isRequired,
 };
 

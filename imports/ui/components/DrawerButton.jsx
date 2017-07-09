@@ -5,13 +5,19 @@ import { NavLink } from 'react-router-dom';
 
 // Material-UI imports
 import { ListItem, ListItemText, ListItemIcon } from 'material-ui/List';
+import { grey } from 'material-ui/styles/colors';
 
 const DrawerButton = props => (
   <ListItem button>
     <NavLink
       to={props.to}
-      activeStyle={{
+      style={{
         textDecoration: 'none',
+        color: grey[600],
+      }}
+      activeStyle={{
+        fontWeight: 'bold',
+        color: grey[400],
       }}
     >
       { props.icon !== null &&
@@ -21,6 +27,7 @@ const DrawerButton = props => (
       }
       <ListItemText
         primary={props.text}
+        disableTypography
       />
     </NavLink>
   </ListItem>

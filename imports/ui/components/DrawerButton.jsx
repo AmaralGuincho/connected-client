@@ -8,29 +8,30 @@ import { ListItem, ListItemText, ListItemIcon } from 'material-ui/List';
 import { grey } from 'material-ui/styles/colors';
 
 const DrawerButton = props => (
-  <ListItem button>
-    <NavLink
-      to={props.to}
-      style={{
-        textDecoration: 'none',
-        color: grey[600],
-      }}
-      activeStyle={{
-        fontWeight: 'bold',
-        color: grey[400],
-      }}
-    >
+  <NavLink
+    {...props}
+    to={props.to}
+    style={{
+      textDecoration: 'none',
+      color: grey[600],
+    }}
+    activeStyle={{
+      fontWeight: 'bold',
+      color: grey[700],
+    }}
+  >
+    <ListItem button>
       { props.icon !== null &&
-        <ListItemIcon>
-          {props.icon}
-        </ListItemIcon>
+      <ListItemIcon>
+        {props.icon}
+      </ListItemIcon>
       }
       <ListItemText
         primary={props.text}
         disableTypography
       />
-    </NavLink>
-  </ListItem>
+    </ListItem>
+  </NavLink>
 );
 
 DrawerButton.propTypes = {

@@ -15,7 +15,7 @@ const PageBase = (props) => {
     <div>
       <span style={globalStyles.navigation}>{navigation}</span>
 
-      <Paper style={globalStyles.paper} zDepth={depth}>
+      <Paper style={globalStyles.paper} elevation={4}>
         <h3 style={globalStyles.title}>{title}</h3>
         <Divider style={globalStyles.divider} />
         <h3 style={globalStyles.subtitle}>{subtitle}</h3>

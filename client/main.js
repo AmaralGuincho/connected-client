@@ -1,26 +1,26 @@
-import React from 'react';
-import { Meteor } from 'meteor/meteor';
-import { render } from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { Meteor } from 'meteor/meteor'
 
-import theme from '../imports/ui/theme';
-// Redux
-// import { createStore } from 'redux';
-// import { Provider } from 'react-redux';
+import React from 'react'
+import { render } from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
 
-// Roboto font global import
-import 'typeface-roboto';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 
-import App from '../imports/ui/App.jsx';
+import App from '../imports/ui/App.jsx'
+
+/* Inject React Touch Tap Plugin */
+import 'react-tap-event-plugin'
+import 'typeface-roboto'
 
 Meteor.startup(() => {
   render(
     <BrowserRouter>
-      <MuiThemeProvider theme={theme}>
+      <MuiThemeProvider theme={getMuiTheme(lightBaseTheme)}>
         <App />
       </MuiThemeProvider>
     </BrowserRouter>,
-    document.querySelector('#app'),
-  );
-});
+    document.querySelector('#app')
+  )
+})

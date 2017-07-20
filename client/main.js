@@ -5,19 +5,18 @@ import { render } from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 
 import App from '../imports/ui/App.jsx'
+import theme from '../imports/ui/theme'
 
 /* Inject React Touch Tap Plugin */
-import 'react-tap-event-plugin'
-import 'typeface-roboto'
+import injectOnTouchTapPlugin from 'react-tap-event-plugin'
+injectOnTouchTapPlugin()
 
 Meteor.startup(() => {
   render(
     <BrowserRouter>
-      <MuiThemeProvider theme={getMuiTheme(lightBaseTheme)}>
+      <MuiThemeProvider theme={theme}>
         <App />
       </MuiThemeProvider>
     </BrowserRouter>,

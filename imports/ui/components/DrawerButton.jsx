@@ -24,7 +24,7 @@ const DrawerButton = props => {
       exact={exact}
       to={to}
       style={styleSheet.nav}
-      activeStyle={styleSheet.activeStyle}
+      activeStyle={styleSheet.activeNav}
     >
       <MenuItem
         primaryText={text}

@@ -17,7 +17,7 @@ const styleSheet = {
 }
 
 const DrawerButton = props => {
-  const {icon, exact, text, to} = props
+  const {icon, exact, text, to, onTouchTap} = props
 
   return (
     <NavLink
@@ -29,6 +29,7 @@ const DrawerButton = props => {
       <MenuItem
         primaryText={text}
         leftIcon={icon}
+        onTouchTap={event => onTouchTap(event)}
       />
 
     </NavLink>
@@ -39,13 +40,15 @@ DrawerButton.propTypes = {
   text: PropTypes.string.isRequired,
   icon: PropTypes.element,
   to: PropTypes.node,
-  exact: PropTypes.bool
+  exact: PropTypes.bool,
+  onTouchTap: PropTypes.func
 }
 
 DrawerButton.defaultProps = {
   icon: null,
   to: null,
-  exact: false
+  exact: false,
+  onTouchTap: null
 }
 
 export default DrawerButton

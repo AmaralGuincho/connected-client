@@ -14,8 +14,12 @@
     "react-addons-pure-render-mixin": "^15.6.0",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.2",
+    "react-schema-form": "^0.3.7",
     "react-tap-event-plugin": "^2.0.1",
-    "typeface-roboto": "0.0.31"
+    "simpl-schema": "^0.3.1",
+    "typeface-roboto": "0.0.31",
+    "uniforms": "^1.19.1",
+    "uniforms-material": "^1.19.1"
   },
   "devDependencies": {
     "eslint": "^4.2.0",

@@ -1,9 +1,17 @@
 import React from 'react'
 
+/* Link Meteor Mongo Api with React */
+import { createContainer } from 'meteor/react-meteor-data'
+
+import { api, schema } from '../../api/Funcionarios'
+import MuiForm from '../components/MuiForm.jsx'
+
 const Funcionarios = () => (
   <div>
-    <h1> Hello World </h1>
+    <MuiForm schema={schema} api={api} title='Funcionarios' />
   </div>
 )
 
-export default Funcionarios
+export default createContainer(() => ({
+  funcionarios: api.find({}, { sort: { createdAt: -1 } }).fetch()
+}), Funcionarios)

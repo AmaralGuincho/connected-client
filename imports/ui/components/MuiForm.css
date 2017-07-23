@@ -1,0 +1,10 @@
+.card {
+  margin: 4vw 2vw;
+  padding: 30px 40px;
+}
+
+.form-actions {
+  margin-top: 5vh;
+  display: flex;
+  justify-content: flex-end;
+}

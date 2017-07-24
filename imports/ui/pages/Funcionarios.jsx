@@ -8,7 +8,7 @@ import MuiForm from '../components/MuiForm.jsx'
 
 const Funcionarios = () => (
   <div>
-    <MuiForm schema={schema} api={api} title='Funcionarios' />
+    <MuiForm schema={schema} api={api} title='Funcionários' />
   </div>
 )
 

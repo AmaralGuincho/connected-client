@@ -16,11 +16,11 @@ import PeopleIcon from 'material-ui-icons/People'
 
 const App = () => (
   <div>
-    <AppNav>
+    <AppNav title='Amaral Guincho'>
       <DrawerButton to='/' text='Home'
         icon={<HomeIcon />}
       />
-      <DrawerButton to='/funcionarios' text='Funcionarios'
+      <DrawerButton to='/funcionarios' text='Funcionários'
         icon={<PeopleIcon />}
       />
     </AppNav>

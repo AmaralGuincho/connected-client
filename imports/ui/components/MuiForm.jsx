@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 /* Uniforms Setup */
@@ -9,40 +9,102 @@ import ErrorsField from 'uniforms-material/ErrorsField'
 
 /* Material-UI Imports */
 import Paper from 'material-ui/Paper'
+import Snackbar from 'material-ui/Snackbar'
 
+/* Stylish Stylesheet with Style */
 import './MuiForm.css'
 
-const MuiForm = (props) => {
-  const { schema, onSubmit, title } = props
+/* Form Submission method */
 
-  return (
-    <div>
-      <Paper zDepth={2} className='card'>
-        <AutoForm
-          schema={schema}
-          onSubmit={event => onSubmit(event)}
-        >
-          <h2 className='form-title'>{title}</h2>
+class MuiForm extends Component {
+  constructor (props) {
+    super(props)
 
-          <ErrorsField />
+    this.state = {
+      isSnackbarOpen: false,
+      snackbarMessage: ''
+    }
 
-          <div className='form-inputs'>
-            <AutoFields className='mui-input' />
-          </div>
+    this.submitForm = this.submitForm.bind(this)
+    this.handleRequestChange = this.handleRequestChange.bind(this)
+  }
 
-          <div className='form-actions'>
-            <SubmitField label='Salvar' primary />
-          </div>
+  handleRequestChange (reason) {
+    if (reason === 'clickaway' ||
+      reason === 'timeout') {
+      this.setState({
+        isSnackbarOpen: false
+      })
+    }
+  }
 
-        </AutoForm>
-      </Paper>
-    </div>
-  )
+  submitForm (api, doc) {
+    /* Default Security values */
+    const defaultValues = {
+      createdAt: new Date()
+    }
+
+    const formObject = Object.assign({}, doc, defaultValues)
+
+    /* POST to api */
+    try {
+      api.insert(formObject)
+      this.setState({
+        snackbarMessage: 'Cadastro efetuado'
+      })
+    } catch (e) {
+      this.setState({
+        snackbarMessage: 'Occoreu um erro!'
+      })
+    } finally {
+      this.setState(prevState => ({
+        isSnackbarOpen: true
+      }))
+    }
+  }
+
+  /* Actual  Form UI */
+  render () {
+    const { schema, api, title } = this.props
+    const { isSnackbarOpen, snackbarMessage } = this.state
+    const { handleRequestChange } = this
+
+    return (
+      <div>
+        <Paper zDepth={2} className='card'>
+          <AutoForm
+            schema={schema}
+            onSubmit={doc => this.submitForm(api, doc)}
+          >
+            <h2 className='form-title'>{title}</h2>
+
+            <ErrorsField />
+
+            <div className='form-inputs'>
+              <AutoFields className='mui-input' />
+            </div>
+
+            <div className='form-actions'>
+              <SubmitField label='Salvar' primary />
+            </div>
+
+          </AutoForm>
+
+          <Snackbar
+            open={isSnackbarOpen}
+            message={snackbarMessage}
+            autoHideDuration={4000}
+            onRequestClose={reason => handleRequestChange(reason)}
+          />
+        </Paper>
+      </div>
+    )
+  }
 }
 
 MuiForm.propTypes = {
   schema: PropTypes.object,
-  onSubmit: PropTypes.func,
+  api: PropTypes.object,
   title: PropTypes.string
 }
 

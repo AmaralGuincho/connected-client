@@ -12,7 +12,7 @@ import Paper from 'material-ui/Paper'
 import Snackbar from 'material-ui/Snackbar'
 
 /* Stylish Stylesheet with Style */
-import './MuiForm.css'
+import './BasicCard.css'
 
 /* Form Submission method */
 

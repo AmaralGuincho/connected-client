@@ -17,8 +17,9 @@ const Funcionarios = props => {
       <SmartList
         data={funcionarios}
         title='Funcionários'
-        masterProp={'name'}
-        showProps={['name', 'occupation']}
+        schema={schema}
+        editRoute='/funcionarios'
+        showProps={['name', 'lastname', 'occupation']}
       />
       <MuiForm schema={schema} api={api} title='Funcionários' />
     </div>

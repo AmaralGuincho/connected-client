@@ -10,24 +10,35 @@ import MuiForm from '../components/MuiForm.jsx'
 import SmartList from '../components/SmartList.jsx'
 
 const Funcionarios = props => {
-  const { funcionarios } = props
+  const { funcionarios, match } = props
+  const routeId = match.params.id || null
 
   return (
     <div>
       <SmartList
-        data={funcionarios}
         title='Funcionários'
+        data={funcionarios}
         schema={schema}
         editRoute='/funcionarios'
         showProps={['name', 'lastname', 'occupation']}
       />
-      <MuiForm schema={schema} api={api} title='Funcionários' />
+      <MuiForm
+        title='Funcionários'
+        schema={schema}
+        api={api}
+        updateId={routeId}
+      />
     </div>
   )
 }
 
 Funcionarios.propTypes = {
-  funcionarios: PropTypes.arrayOf(PropTypes.object)
+  funcionarios: PropTypes.arrayOf(PropTypes.object),
+  match: PropTypes.object
+}
+
+Funcionarios.defaultProps = {
+  match: null
 }
 
 export default createContainer(() => ({

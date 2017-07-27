@@ -28,7 +28,7 @@ const App = () => (
     <div className='app-content'>
       <Switch>
         <Route exact path='/' component={Home} />
-        <Route path='/funcionarios' component={Funcionarios} />
+        <Route path='/funcionarios/:id?' component={Funcionarios} />
       </Switch>
     </div>
   </div>

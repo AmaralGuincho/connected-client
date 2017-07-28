@@ -1,6 +1,9 @@
 import { Mongo } from 'meteor/mongo'
 import SimpleSchema from 'simpl-schema'
 
+/* Uniforms Schema Specific Properties */
+SimpleSchema.extendOptions(['uniforms'])
+
 export const api = new Mongo.Collection('Funcionarios')
 
 export const schema = new SimpleSchema({
@@ -26,8 +29,11 @@ export const schema = new SimpleSchema({
   },
   cpf: {
     type: String,
-    label: 'CPF',
-    optional: true
+    label: 'CPF/CNPJ',
+    optional: true,
+    uniforms: {
+      regEx: /^[0-9]{5}$/
+    }
   },
   rg: {
     type: String,
@@ -37,7 +43,8 @@ export const schema = new SimpleSchema({
   sex: {
     type: String,
     label: 'Sexo',
-    optional: true
+    optional: true,
+    allowedValues: ['Masculino', 'Feminino']
   },
   email: {
     type: String,
@@ -47,12 +54,23 @@ export const schema = new SimpleSchema({
   cep: {
     type: String,
     label: 'CEP',
+
     optional: true
   },
   address: {
     type: String,
     label: 'Endereco',
-    optional: true
+    optional: true,
+    uniforms: {
+      multiLine: true,
+      rows: 2,
+      rowsMax: 4
+    }
+  },
+  active: {
+    type: Boolean,
+    label: 'Funcionário Ativo',
+    defaultValue: true
   }
 })
 

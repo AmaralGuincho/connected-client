@@ -51,13 +51,15 @@ class SmartList extends Component {
 
   generateDataItems (data, showProps) {
     return data.map((item, index) => (
-      <TableRow key={`${index} ${item['id']}`}>
-        {showProps.map(property => (
-          <TableRowColumn key={item['_id']}>
-            {item[property] || '--'}
-          </TableRowColumn>
-        ))}
-      </TableRow>
+      item['active'] ? (
+        <TableRow key={`${index} ${item['id']}`}>
+          {showProps.map(property => (
+            <TableRowColumn key={item['_id']}>
+              {item[property] || '--'}
+            </TableRowColumn>
+          ))}
+        </TableRow>
+      ) : null
     ))
   }
 

@@ -12,7 +12,7 @@ import Paper from 'material-ui/Paper'
 import Snackbar from 'material-ui/Snackbar'
 
 /* Stylish Stylesheet with Style */
-import './BasicCard.css'
+import './BaseCard.css'
 
 /* Form Submission method */
 
@@ -135,8 +135,6 @@ class MuiForm extends Component {
     const { schema, api, title, updateId } = this.props
     const { isSnackbarOpen, snackbarMessage, updateModel } = this.state
     const { handleRequestChange } = this
-
-    const brazilianTimeLocale = global.Intl.DateTimeFormat
 
     return (
       <div>

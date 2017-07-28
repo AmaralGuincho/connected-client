@@ -15,7 +15,7 @@ import {
 } from 'material-ui/Table'
 import RaisedButton from 'material-ui/RaisedButton'
 
-import './BasicCard.css'
+import './BaseCard.css'
 
 class SmartList extends Component {
   constructor (props) {

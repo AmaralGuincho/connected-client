@@ -1,12 +1,9 @@
 import { Mongo } from 'meteor/mongo'
-import SimpleSchema from 'simpl-schema'
-
-/* Uniforms Schema Specific Properties */
-SimpleSchema.extendOptions(['uniforms'])
+import Schema from './BaseSchema'
 
 export const api = new Mongo.Collection('Funcionarios')
 
-export const schema = new SimpleSchema({
+export const schema = new Schema({
   name: {
     type: String,
     optional: false,

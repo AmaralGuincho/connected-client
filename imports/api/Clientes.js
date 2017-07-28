@@ -1,9 +1,9 @@
 import { Mongo } from 'meteor/mongo'
-import SimpleSchema from 'simpl-schema'
+import Schema from './BaseSchema'
 
 export const api = new Mongo.Collection('Clientes')
 
-export const schema = new SimpleSchema({
+export const schema = new Schema({
   name: {
     type: String,
     optional: false,

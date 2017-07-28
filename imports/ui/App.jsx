@@ -29,6 +29,8 @@ const App = () => (
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path='/funcionarios/:id?' component={Funcionarios} />
+        /* Redirect unknown rotes to home*/
+        <Route component={Home} />
       </Switch>
     </div>
   </div>

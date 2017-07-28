@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor'
 
+import '../imports/api/Clientes'
 import '../imports/api/Funcionarios'
 
 Meteor.startup(() => {

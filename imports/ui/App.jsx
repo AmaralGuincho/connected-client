@@ -9,19 +9,31 @@ import DrawerButton from './components/DrawerButton.jsx'
 /* Pages Imports */
 import Home from './pages/Home.jsx'
 import Funcionarios from './pages/Funcionarios.jsx'
+import Clientes from './pages/Clientes.jsx'
 
 /* Icons Imports */
 import HomeIcon from 'material-ui-icons/Home'
 import PeopleIcon from 'material-ui-icons/People'
+import CarIcon from 'material-ui-icons/DirectionsCar'
 
 const App = () => (
   <div>
     <AppNav title='Amaral Guincho'>
-      <DrawerButton to='/' text='Home'
+      <DrawerButton
+        exact
+        to='/'
+        text='Home'
         icon={<HomeIcon />}
       />
-      <DrawerButton to='/funcionarios' text='Funcionários'
+      <DrawerButton
+        to='/funcionarios'
+        text='Funcionários'
         icon={<PeopleIcon />}
+      />
+      <DrawerButton
+        to='/clientes'
+        text='Clientes'
+        icon={<CarIcon />}
       />
     </AppNav>
 
@@ -29,6 +41,7 @@ const App = () => (
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path='/funcionarios/:id?' component={Funcionarios} />
+        <Route path='/clientes/:id?' component={Clientes} />
         /* Redirect unknown rotes to home*/
         <Route component={Home} />
       </Switch>

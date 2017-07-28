@@ -114,8 +114,17 @@ class MuiForm extends Component {
           snackbarMessage: 'Occoreu um erro!'
         })
       } finally {
+        /* Create a Object with doc properties but with no values */
+        const emptyDoc = Object.keys(doc).map(key => (
+          { [key]: ' ' }
+        )).reduce((col, item) => {
+          return Object.assign(col, item)
+        })
+
+        /* Show Snackbar and clear inputs */
         this.setState(prevState => ({
-          isSnackbarOpen: true
+          isSnackbarOpen: true,
+          updateModel: emptyDoc
         }))
       }
     }
@@ -127,6 +136,8 @@ class MuiForm extends Component {
     const { isSnackbarOpen, snackbarMessage, updateModel } = this.state
     const { handleRequestChange } = this
 
+    const brazilianTimeLocale = global.Intl.DateTimeFormat
+
     return (
       <div>
         <Paper zDepth={2} className='card'>
@@ -137,11 +148,11 @@ class MuiForm extends Component {
           >
             <h1 className='form-title'>{title}</h1>
 
-            <ErrorsField />
-
             <div className='form-inputs'>
               <AutoFields className='mui-input' />
             </div>
+
+            <ErrorsField />
 
             <div className='form-actions'>
               <SubmitField

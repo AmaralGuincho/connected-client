@@ -74,32 +74,42 @@ class SmartList extends Component {
     const { editButtonRoute } = this.state
     const { generateDataHeaders, generateDataItems } = this
 
+    /* Transform Json to Table */
+    const dataItems = generateDataItems(data, showProps)
+    const dataHeaders = generateDataHeaders(schema, showProps)
+
     return (
       <div>
-        <Paper className='card'>
-          <h1>{title}</h1>
-          <Table
-            height={'300px'}
-            onRowSelection={this._onRowSelection}
-          >
-            <TableHeader displaySelectAll={false}>
-              <TableRow>
-                {generateDataHeaders(schema, showProps)}
-              </TableRow>
-            </TableHeader>
-            <TableBody
-              showRowHover
-              ref={tableBody => { this.tableBody = tableBody }}
-            >
-              {generateDataItems(data, showProps)}
-            </TableBody>
-          </Table>
-          <div className='form-actions'>
-            <RaisedButton label='Edit' containerElement={
-              <Link to={editButtonRoute} />
-            }
-            />
-          </div>
+        <Paper className='card' zDepth={2}>
+          <h1 className='form-title'>{title}</h1>
+          { data.length > 0 ? (
+            <div>
+              <Table
+                height={'300px'}
+                onRowSelection={this._onRowSelection}
+              >
+                <TableHeader displaySelectAll={false}>
+                  <TableRow>
+                    {dataHeaders}
+                  </TableRow>
+                </TableHeader>
+                <TableBody
+                  showRowHover
+                  ref={tableBody => { this.tableBody = tableBody }}
+                >
+                  {dataItems}
+                </TableBody>
+              </Table>
+              <div className='form-actions'>
+                <RaisedButton primary label='Alterar' containerElement={
+                  <Link to={editButtonRoute} />
+                }
+                />
+              </div>
+            </div>
+          ) : (
+            <h3 className='disabled'> Nenhum dado foi encontrado </h3>
+          )}
         </Paper>
       </div>
     )

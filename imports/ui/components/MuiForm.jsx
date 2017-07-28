@@ -135,7 +135,7 @@ class MuiForm extends Component {
             onSubmit={doc => this.submitForm(api, doc)}
             model={updateModel}
           >
-            <h2 className='form-title'>{title}</h2>
+            <h1 className='form-title'>{title}</h1>
 
             <ErrorsField />
 

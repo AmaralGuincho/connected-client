@@ -33,7 +33,7 @@ const Funcionarios = props => {
 }
 
 Funcionarios.propTypes = {
-  funcionarios: PropTypes.arrayOf(PropTypes.object),
+  funcionarios: PropTypes.arrayOf(PropTypes.object).isRequired,
   match: PropTypes.object
 }
 

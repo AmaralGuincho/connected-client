@@ -8,3 +8,12 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.form-title {
+  color: #333;
+}
+
+.disabled {
+  color: #818181;
+  font-weight: 300;
+}

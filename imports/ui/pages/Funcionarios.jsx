@@ -4,10 +4,11 @@ import PropTypes from 'prop-types'
 /* Link Meteor Mongo Api with React */
 import { createContainer } from 'meteor/react-meteor-data'
 
+/* Backend API structures */
 import { api, schema } from '../../api/Funcionarios'
 
-import MuiForm from '../components/MuiForm.jsx'
-import SmartList from '../components/SmartList.jsx'
+/* Generate generic CRUD */
+import SmartView from '../components/SmartView.jsx'
 
 const Funcionarios = props => {
   const { funcionarios, match } = props
@@ -15,18 +16,15 @@ const Funcionarios = props => {
 
   return (
     <div>
-      <SmartList
+      <SmartView
         title='Funcionários'
+        schema={schema}
         data={funcionarios}
-        schema={schema}
-        editRoute='/funcionarios'
-        showProps={['name', 'lastname', 'occupation']}
-      />
-      <MuiForm
-        title='Funcionários'
-        schema={schema}
         api={api}
         updateId={routeId}
+        route='/funcionarios'
+        showProps={['name', 'lastname', 'occupation']}
+        match={match}
       />
     </div>
   )

@@ -19,6 +19,7 @@ const Funcionarios = props => {
         title='Clientes'
         data={clientes}
         schema={schema}
+        api={api}
         editRoute='/clientes'
         showProps={['name', 'lastname', 'car', 'plate']}
       />

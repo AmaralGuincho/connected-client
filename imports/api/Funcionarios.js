@@ -60,7 +60,7 @@ export const schema = new Schema({
     optional: true,
     uniforms: {
       multiLine: true,
-      rows: 2,
+      rows: 1,
       rowsMax: 4
     }
   },

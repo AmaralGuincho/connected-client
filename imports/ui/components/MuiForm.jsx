@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+/* React Router */
+import { Link } from 'react-router-dom'
+
 /* Uniforms Setup */
 import AutoFields from 'uniforms-material/AutoFields'
 import AutoForm from 'uniforms-material/AutoForm'
@@ -26,18 +29,19 @@ class MuiForm extends Component {
       updateModel: {}
     }
 
-    this.submitForm = this.submitForm.bind(this)
-    this.handleRequestChange = this.handleRequestChange.bind(this)
+    this.createDocument = this.createDocument.bind(this)
+    this.updateDocument = this.updateDocument.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentWillReceiveProps (nextProps) {
-    const { updateId } = nextProps
+  componentWillMount () {
+    const { updateId } = this.props
 
     if (updateId) {
       const { api } = this.props
 
       try {
-        const updateModel = api.findOne({ _id: nextProps.updateId })
+        const updateModel = api.findOne({ _id: updateId })
         this.setState({
           updateModel
         })
@@ -61,72 +65,91 @@ class MuiForm extends Component {
     }
   }
 
-  submitForm (api, doc) {
+  createDocument (doc) {
+    const { api } = this.props
+
+    /* Create a  Document */
+    try {
+      const defaultValues = {
+        createdAt: new Date()
+      }
+
+      /* Create a object with ui document and defaultValues */
+      const formObject = Object.assign({}, doc, defaultValues)
+
+      /* Post New Document */
+      api.insert(formObject)
+
+      /* Ui Feedback */
+      this.setState({
+        snackbarMessage: 'Cadastro efetuado'
+      })
+    } catch (e) {
+      this.setState({
+        snackbarMessage: 'Occoreu um erro!'
+      })
+    } finally {
+      /* Show Snackbar feedback */
+      this.setState(prevState => ({
+        isSnackbarOpen: true
+      }))
+    }
+  }
+
+  updateDocument (doc) {
+    const { api, updateId } = this.props
+
+    /* Update an existing document */
+    try {
+      const updateValues = {
+        updatedAt: new Date()
+      }
+
+      /* Since we may not want to update document _id property */
+      const { _id, ...docWithoutId } = doc
+      const formObject = Object.assign({}, docWithoutId, updateValues)
+
+      /* Request Update */
+      api.update({_id: updateId}, {$set: formObject})
+
+      /* Ui Feedback */
+      this.setState({
+        snackbarMessage: 'Alteração Efetuada'
+      })
+    } catch (e) {
+      this.setState({
+        snackbarMessage: 'Ocorreu um erro!'
+      })
+    } finally {
+      this.setState({
+        isSnackbarOpen: true
+      })
+    }
+  }
+
+  cleanUi (doc) {
+    /* Create a Object with doc properties but with no values */
+    const emptyDoc = Object.keys(doc).map(key => (
+      { [key]: ' ' }
+    )).reduce((col, item) => {
+      return Object.assign(col, item)
+    })
+    this.setState({
+      updateModel: emptyDoc
+    })
+  }
+
+  handleSubmit (doc) {
     const { updateId } = this.props
+    const { createDocument, updateDocument } = this
 
+    /* Handle update request if exists one */
     if (updateId) {
-      /* Update an existing document */
-      try {
-        const updateValues = {
-          updatedAt: new Date()
-        }
-
-        /* Since we may not want to update document _id property */
-        const {_id, ...docWithoutId} = doc
-
-        const formObject = Object.assign({}, docWithoutId, updateValues)
-
-        /* Request Update */
-        api.update({_id: updateId}, {$set: formObject})
-
-        /* Ui Feedback */
-        this.setState({
-          snackbarMessage: 'Alteração Efetuada!'
-        })
-      } catch (e) {
-        this.setState({
-          snackbarMessage: 'Ocorreu um erro!'
-        })
-      } finally {
-        this.setState({
-          isSnackbarOpen: true
-        })
-      }
+      console.log(`Updating ${obj}`)
+      updateDocument(doc)
     } else {
-      /* Create a  Document */
-      try {
-        const defaultValues = {
-          createdAt: new Date()
-        }
-
-        /* Create a object with ui document and defaultValues */
-        const formObject = Object.assign({}, doc, defaultValues)
-
-        /* Post New Document */
-        api.insert(formObject)
-
-        /* Ui Feedback */
-        this.setState({
-          snackbarMessage: 'Cadastro efetuado'
-        })
-      } catch (e) {
-        this.setState({
-          snackbarMessage: 'Occoreu um erro!'
-        })
-      } finally {
-        /* Create a Object with doc properties but with no values */
-        const emptyDoc = Object.keys(doc).map(key => (
-          { [key]: ' ' }
-        )).reduce((col, item) => {
-          return Object.assign(col, item)
-        })
-
-        /* Show Snackbar and clear inputs */
-        this.setState(prevState => ({
-          isSnackbarOpen: true,
-          updateModel: emptyDoc
-        }))
-      }
+      console.log(`Creating ${obj}`)
+      createDocument(doc)
     }
   }
 
@@ -141,8 +164,8 @@ class MuiForm extends Component {
         <Paper zDepth={2} className='card'>
           <AutoForm
             schema={schema}
-            onSubmit={doc => this.submitForm(api, doc)}
             model={updateModel}
+            onSubmit={doc => this.handleSubmit(api, doc)}
           >
             <h1 className='form-title'>{title}</h1>
 

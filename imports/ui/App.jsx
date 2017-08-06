@@ -40,8 +40,9 @@ const App = () => (
     <div className='app-content'>
       <Switch>
         <Route exact path='/' component={Home} />
-        <Route path='/funcionarios/:id?' component={Funcionarios} />
-        <Route path='/clientes/:id?' component={Clientes} />
+        <Route path='/funcionarios' component={Funcionarios} />
+        <Route path='/clientes' component={Clientes} />
+
         /* Redirect unknown rotes to home*/
         <Route component={Home} />
       </Switch>

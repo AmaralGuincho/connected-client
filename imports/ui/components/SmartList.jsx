@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+/* Link Meteor Mongo Api with React */
+import { createContainer } from 'meteor/react-meteor-data'
+
 import { Link } from 'react-router-dom'
 
 /* Material-UI Imports */
@@ -15,6 +18,7 @@ import {
 } from 'material-ui/Table'
 import RaisedButton from 'material-ui/RaisedButton'
 
+/* Basic Card Styles */
 import './BaseCard.css'
 
 class SmartList extends Component {
@@ -65,20 +69,19 @@ class SmartList extends Component {
 
   handleEditRow (row) {
     const { editRoute, data } = this.props
-
     this.setState(prevState => ({
       editButtonRoute: `${editRoute}/${data[row]['_id']}`
     }))
   }
 
   render () {
-    const { title, data, showProps, schema } = this.props
+    const { title, showProps, schema, data } = this.props
     const { editButtonRoute } = this.state
     const { generateDataHeaders, generateDataItems } = this
 
     /* Transform Json to Table */
-    const dataItems = generateDataItems(data, showProps)
     const dataHeaders = generateDataHeaders(schema, showProps)
+    const dataItems = generateDataItems(data, showProps)
 
     return (
       <div>
@@ -87,7 +90,6 @@ class SmartList extends Component {
           { data.length > 0 ? (
             <div>
               <Table
-                height={'300px'}
                 onRowSelection={this._onRowSelection}
               >
                 <TableHeader displaySelectAll={false}>
@@ -133,4 +135,9 @@ SmartList.propTypes = {
   editRoute: PropTypes.string
 }
 
-export default SmartList
+/* Container with meteor reactive data */
+export default createContainer(({api}) => {
+  return {
+    data: api.find({}).fetch()
+  }
+}, SmartList)

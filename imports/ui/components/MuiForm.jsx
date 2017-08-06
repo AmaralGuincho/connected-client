@@ -34,7 +34,7 @@ class MuiForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentWillMount () {
+  componentDidMount () {
     const { updateId } = this.props
 
     if (updateId) {
@@ -145,10 +145,8 @@ class MuiForm extends Component {
 
     /* Handle update request if exists one */
     if (updateId) {
-      console.log(`Updating ${obj}`)
       updateDocument(doc)
     } else {
-      console.log(`Creating ${obj}`)
       createDocument(doc)
     }
   }

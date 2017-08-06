@@ -69,6 +69,7 @@ class SmartList extends Component {
 
   handleEditRow (row) {
     const { editRoute, data } = this.props
+
     this.setState(prevState => ({
       editButtonRoute: `${editRoute}/${data[row]['_id']}`
     }))

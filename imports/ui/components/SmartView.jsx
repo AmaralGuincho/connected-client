@@ -1,11 +1,21 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { Route } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
+
+import Fab from 'material-ui/FloatingActionButton'
+import ContentAdd from 'material-ui/svg-icons/content/add'
 
 /* Smart CRUD components */
 import MuiForm from './MuiForm.jsx'
 import SmartList from './SmartList.jsx'
+
+const fabStyle = {
+  position: 'fixed',
+  bottom: '3%',
+  right: '3%',
+  zIndex: '8'
+}
 
 class SmartView extends Component {
   constructor () {
@@ -72,7 +82,21 @@ class SmartView extends Component {
         <Route
           exact
           path={url}
-          render={() => (<h1>hey there</h1>)}
+          render={() => {
+            return (
+              <div>
+                { renderSmartList() }
+                <Fab
+                  secondary
+                  style={fabStyle}
+                  zDepth={5}
+                  containerElement={<Link to={`${url}/create`} />}
+                >
+                  <ContentAdd />
+                </Fab>
+              </div>
+            )
+          }}
         />
 
       </div>

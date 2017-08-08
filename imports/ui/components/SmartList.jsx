@@ -70,8 +70,11 @@ class SmartList extends Component {
   handleEditRow (row) {
     const { editRoute, data } = this.props
 
+    /* Select  only active objects */
+    const activeData = data.filter((obj) => (obj.active === true))
+
     this.setState(prevState => ({
-      editButtonRoute: `${editRoute}/${data[row]['_id']}`
+      editButtonRoute: `${editRoute}/${activeData[row]['_id']}`
     }))
   }
 

@@ -43,6 +43,11 @@ export const schema = new Schema({
     type: String,
     label: 'Seguradora',
     optional: true
+  },
+  active: {
+    type: Boolean,
+    label: 'Funcionário Ativo',
+    defaultValue: true
   }
 })
 

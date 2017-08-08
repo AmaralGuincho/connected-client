@@ -48,7 +48,7 @@ class MuiForm extends Component {
           updateModel
         })
       } catch (e) {
-        console.log(e)
+        console.error(e)
 
         this.setState({
           snackbarMessage: 'Occoreu um erro',
@@ -76,7 +76,6 @@ class MuiForm extends Component {
         createdAt: new Date()
       }
 
-      console.log(doc)
       /* Create a object with ui document and defaultValues */
       const formObject = Object.assign({}, doc, defaultValues)
 

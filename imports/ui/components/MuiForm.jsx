@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 /* React Router */
-import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 /* Uniforms Setup */
 import AutoFields from 'uniforms-material/AutoFields'
@@ -26,12 +26,14 @@ class MuiForm extends Component {
     this.state = {
       isSnackbarOpen: false,
       snackbarMessage: '',
+      home: false,
       updateModel: {}
     }
 
     this.createDocument = this.createDocument.bind(this)
     this.updateDocument = this.updateDocument.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleRequestChange = this.handleRequestChange.bind(this)
   }
 
   componentDidMount () {
@@ -74,6 +76,7 @@ class MuiForm extends Component {
         createdAt: new Date()
       }
 
+      console.log(doc)
       /* Create a object with ui document and defaultValues */
       const formObject = Object.assign({}, doc, defaultValues)
 
@@ -85,6 +88,7 @@ class MuiForm extends Component {
         snackbarMessage: 'Cadastro efetuado'
       })
     } catch (e) {
+      console.error(e)
       this.setState({
         snackbarMessage: 'Occoreu um erro!'
       })
@@ -149,11 +153,12 @@ class MuiForm extends Component {
     } else {
       createDocument(doc)
     }
+    this.setState({ home: true })
   }
 
   /* Actual  Form UI */
   render () {
-    const { schema, api, title, updateId } = this.props
+    const { schema, title, updateId, homeUrl } = this.props
     const { isSnackbarOpen, snackbarMessage, updateModel } = this.state
     const { handleRequestChange } = this
 
@@ -163,7 +168,7 @@ class MuiForm extends Component {
           <AutoForm
             schema={schema}
             model={updateModel}
-            onSubmit={doc => this.handleSubmit(api, doc)}
+            onSubmit={doc => this.handleSubmit(doc)}
           >
             <h1 className='form-title'>{title}</h1>
 
@@ -182,6 +187,10 @@ class MuiForm extends Component {
 
           </AutoForm>
 
+          {this.state.home && (
+            <Redirect to={homeUrl} />
+          )}
+
           <Snackbar
             open={isSnackbarOpen}
             message={snackbarMessage}
@@ -198,7 +207,8 @@ MuiForm.propTypes = {
   schema: PropTypes.object,
   api: PropTypes.object,
   title: PropTypes.string,
-  updateId: PropTypes.string
+  updateId: PropTypes.string,
+  homeUrl: PropTypes.string
 }
 
 MuiForm.defaultProps = {

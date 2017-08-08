@@ -46,7 +46,7 @@ class SmartView extends Component {
   }
 
   renderSmartForm (updateId = null) {
-    const { title, schema, api } = this.props
+    const { title, schema, api, match } = this.props
 
     return (
       <MuiForm
@@ -54,6 +54,7 @@ class SmartView extends Component {
         schema={schema}
         api={api}
         updateId={updateId}
+        homeUrl={match.url}
       />
     )
   }
@@ -89,7 +90,7 @@ class SmartView extends Component {
                 <Fab
                   secondary
                   style={fabStyle}
-                  zDepth={5}
+                  zDepth={4}
                   containerElement={<Link to={`${url}/create`} />}
                 >
                   <ContentAdd />

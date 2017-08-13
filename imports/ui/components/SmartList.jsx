@@ -84,8 +84,8 @@ class SmartList extends Component {
     const { generateDataHeaders, generateDataItems } = this
 
     /* Transform Json to Table */
-    const dataHeaders = generateDataHeaders(schema, showProps)
-    const dataItems = generateDataItems(data, showProps)
+    const dataHeaders = generateDataHeaders(schema, showProps) || null
+    const dataItems = generateDataItems(data, showProps) || null
 
     return (
       <div>

@@ -10,6 +10,7 @@ import DrawerButton from './components/DrawerButton.jsx'
 import Home from './pages/Home.jsx'
 import Funcionarios from './pages/Funcionarios.jsx'
 import Clientes from './pages/Clientes.jsx'
+import Servico from './pages/Servico.jsx'
 
 /* Icons Imports */
 import HomeIcon from 'material-ui-icons/Home'
@@ -35,6 +36,10 @@ const App = () => (
         text='Clientes'
         icon={<CarIcon />}
       />
+      <DrawerButton
+        to='/servico'
+        text='Servico'
+      />
     </AppNav>
 
     <div className='app-content'>
@@ -42,6 +47,7 @@ const App = () => (
         <Route exact path='/' component={Home} />
         <Route path='/funcionarios' component={Funcionarios} />
         <Route path='/clientes' component={Clientes} />
+        <Route path='/servico' component={Servico} />
 
         /* Redirect unknown rotes to home*/
         <Route component={Home} />

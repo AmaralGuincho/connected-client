@@ -20,20 +20,11 @@ import './BaseCard.css'
 /* Form Submission method */
 
 class MuiForm extends Component {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      isSnackbarOpen: false,
-      snackbarMessage: '',
-      home: false,
-      updateModel: {}
-    }
-
-    this.createDocument = this.createDocument.bind(this)
-    this.updateDocument = this.updateDocument.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleRequestChange = this.handleRequestChange.bind(this)
+  state = {
+    isSnackbarOpen: false,
+    snackbarMessage: '',
+    home: false,
+    updateModel: {}
   }
 
   componentDidMount () {
@@ -58,7 +49,7 @@ class MuiForm extends Component {
     }
   }
 
-  handleRequestChange (reason) {
+  handleRequestChange = (reason) => {
     if (reason === 'clickaway' ||
       reason === 'timeout') {
       this.setState({
@@ -67,7 +58,7 @@ class MuiForm extends Component {
     }
   }
 
-  createDocument (doc) {
+  createDocument = (doc) => {
     const { api } = this.props
 
     /* Create a  Document */
@@ -99,7 +90,7 @@ class MuiForm extends Component {
     }
   }
 
-  updateDocument (doc) {
+  updateDocument = (doc) => {
     const { api, updateId } = this.props
 
     /* Update an existing document */
@@ -130,7 +121,7 @@ class MuiForm extends Component {
     }
   }
 
-  cleanUi (doc) {
+  cleanUi = (doc) => {
     /* Create a Object with doc properties but with no values */
     const emptyDoc = Object.keys(doc).map(key => (
       { [key]: ' ' }
@@ -142,7 +133,7 @@ class MuiForm extends Component {
     })
   }
 
-  handleSubmit (doc) {
+  handleSubmit = (doc) => {
     const { updateId } = this.props
     const { createDocument, updateDocument } = this
 
@@ -155,7 +146,6 @@ class MuiForm extends Component {
     this.setState({ home: true })
   }
 
-  /* Actual  Form UI */
   render () {
     const { schema, title, updateId, homeUrl } = this.props
     const { isSnackbarOpen, snackbarMessage, updateModel } = this.state

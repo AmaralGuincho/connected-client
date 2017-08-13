@@ -46,7 +46,7 @@ export const schema = new Schema({
   },
   active: {
     type: Boolean,
-    label: 'Funcionário Ativo',
+    label: 'Cliente Ativo',
     defaultValue: true
   }
 })

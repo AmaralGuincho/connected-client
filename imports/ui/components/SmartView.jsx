@@ -46,7 +46,13 @@ class SmartView extends Component {
   }
 
   renderSmartForm (updateId = null) {
-    const { title, schema, api, match } = this.props
+    const {
+      title,
+      schema,
+      api,
+      match,
+      children
+    } = this.props
 
     return (
       <MuiForm
@@ -55,7 +61,9 @@ class SmartView extends Component {
         api={api}
         updateId={updateId}
         homeUrl={match.url}
-      />
+      >
+        {children}
+      </MuiForm>
     )
   }
 
@@ -107,6 +115,7 @@ class SmartView extends Component {
 
 SmartView.propTypes = {
   api: PropTypes.object.isRequired,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)]),
   schema: PropTypes.object.isRequired,
   showProps: PropTypes.arrayOf(PropTypes.string).isRequired,
   title: PropTypes.string.isRequired,

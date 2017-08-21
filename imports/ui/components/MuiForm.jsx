@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Children } from 'react'
 import PropTypes from 'prop-types'
 
 /* React Router */
@@ -146,10 +146,28 @@ class MuiForm extends Component {
     this.setState({ home: true })
   }
 
+  /* Avoid Manual Field Properties  to be rendered by autoform */
+  manualFields = () => {
+    const { children } = this.props
+    return Children.map(children, child => (child.props.name))
+  }
+
   render () {
-    const { schema, title, updateId, homeUrl } = this.props
-    const { isSnackbarOpen, snackbarMessage, updateModel } = this.state
-    const { handleRequestChange } = this
+    const {
+      schema,
+      title,
+      updateId,
+      homeUrl,
+      children
+    } = this.props
+
+    const {
+      isSnackbarOpen,
+      snackbarMessage,
+      updateModel
+    } = this.state
+
+    const { handleSubmit, handleRequestChange, manualFields } = this
 
     return (
       <div>
@@ -157,12 +175,18 @@ class MuiForm extends Component {
           <AutoForm
             schema={schema}
             model={updateModel}
-            onSubmit={doc => this.handleSubmit(doc)}
+            onSubmit={doc => handleSubmit(doc)}
           >
             <h1 className='form-title'>{title}</h1>
 
             <div className='form-inputs'>
-              <AutoFields className='mui-input' />
+              <AutoFields
+                className='mui-input'
+                omitFields={manualFields()}
+              />
+
+              { children }
+
             </div>
 
             <ErrorsField />
@@ -197,7 +221,8 @@ MuiForm.propTypes = {
   api: PropTypes.object,
   title: PropTypes.string,
   updateId: PropTypes.string,
-  homeUrl: PropTypes.string
+  homeUrl: PropTypes.string,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)])
 }
 
 MuiForm.defaultProps = {

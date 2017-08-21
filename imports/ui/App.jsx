@@ -16,6 +16,7 @@ import Servico from './pages/Servico.jsx'
 import HomeIcon from 'material-ui-icons/Home'
 import PeopleIcon from 'material-ui-icons/People'
 import CarIcon from 'material-ui-icons/DirectionsCar'
+import ServiceIcon from 'material-ui-icons/Work'
 
 const App = () => (
   <div>
@@ -24,21 +25,22 @@ const App = () => (
         exact
         to='/'
         text='Home'
-        icon={<HomeIcon />}
+        icon={HomeIcon}
       />
       <DrawerButton
         to='/funcionarios'
         text='Funcionários'
-        icon={<PeopleIcon />}
+        icon={PeopleIcon}
       />
       <DrawerButton
         to='/clientes'
         text='Clientes'
-        icon={<CarIcon />}
+        icon={CarIcon}
       />
       <DrawerButton
         to='/servico'
         text='Servico'
+        icon={ServiceIcon}
       />
     </AppNav>
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { createElement } from 'react'
 import PropTypes from 'prop-types'
 
 import { NavLink } from 'react-router-dom'
@@ -28,7 +28,7 @@ const DrawerButton = props => {
     >
       <MenuItem
         primaryText={text}
-        leftIcon={icon}
+        leftIcon={createElement(icon)}
         onTouchTap={event => onTouchTap(event)}
       />
 
@@ -38,7 +38,7 @@ const DrawerButton = props => {
 
 DrawerButton.propTypes = {
   text: PropTypes.string.isRequired,
-  icon: PropTypes.element,
+  icon: PropTypes.func,
   to: PropTypes.node,
   exact: PropTypes.bool,
   onTouchTap: PropTypes.func

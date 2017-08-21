@@ -11,12 +11,14 @@ import Home from './pages/Home.jsx'
 import Funcionarios from './pages/Funcionarios.jsx'
 import Clientes from './pages/Clientes.jsx'
 import Servico from './pages/Servico.jsx'
+import Frota from './pages/Frota.jsx'
 
 /* Icons Imports */
 import HomeIcon from 'material-ui-icons/Home'
 import PeopleIcon from 'material-ui-icons/People'
 import CarIcon from 'material-ui-icons/DirectionsCar'
 import ServiceIcon from 'material-ui-icons/Work'
+import FrotaIcon from 'material-ui-icons/Help'
 
 const App = () => (
   <div>
@@ -42,6 +44,11 @@ const App = () => (
         text='Servico'
         icon={ServiceIcon}
       />
+      <DrawerButton
+        to='/frota'
+        text='Frota'
+        icon={FrotaIcon}
+      />
     </AppNav>
 
     <div className='app-content'>
@@ -50,6 +57,7 @@ const App = () => (
         <Route path='/funcionarios' component={Funcionarios} />
         <Route path='/clientes' component={Clientes} />
         <Route path='/servico' component={Servico} />
+        <Route path='/frota' component={Frota} />
 
         /* Redirect unknown rotes to home*/
         <Route component={Home} />

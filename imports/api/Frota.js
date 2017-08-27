@@ -19,7 +19,7 @@ export const schema = new Schema({
   vehicleType: {
     type: String,
     label: 'Tipo de Veículo',
-    allowedValues: [ 'Moto', 'Carro', 'Guincho', 'Guincho Pesado' ]
+    allowedValues: ['carro', 'moto', 'guincho leve', 'guincho pesado']
   },
 
   status: {

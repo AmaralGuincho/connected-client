@@ -18,7 +18,7 @@ import HomeIcon from 'material-ui-icons/Home'
 import PeopleIcon from 'material-ui-icons/People'
 import CarIcon from 'material-ui-icons/DirectionsCar'
 import ServiceIcon from 'material-ui-icons/Work'
-import FrotaIcon from 'material-ui-icons/Help'
+import FrotaIcon from 'material-ui-icons/LocalShipping'
 
 const App = () => (
   <div>

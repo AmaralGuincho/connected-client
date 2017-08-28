@@ -20,3 +20,4 @@ accounts-password
 static-html
 http
 react-meteor-data
+#okgrow:accounts-ui-react

@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom'
 /* Local Imports */
 import AppNav from './components/AppNav.jsx'
 import DrawerButton from './components/DrawerButton.jsx'
+import DrawerTab from './components/DrawerTab.jsx'
 
 /* Pages Imports */
 import Home from './pages/Home.jsx'
@@ -19,6 +20,7 @@ import PeopleIcon from 'material-ui-icons/People'
 import CarIcon from 'material-ui-icons/DirectionsCar'
 import ServiceIcon from 'material-ui-icons/Work'
 import FrotaIcon from 'material-ui-icons/LocalShipping'
+import GerenciarIcon from 'material-ui-icons/ImportContacts'
 
 const App = () => (
   <div>
@@ -29,25 +31,29 @@ const App = () => (
         text='Home'
         icon={HomeIcon}
       />
-      <DrawerButton
-        to='/funcionarios'
-        text='Funcionários'
-        icon={PeopleIcon}
-      />
-      <DrawerButton
-        to='/clientes'
-        text='Clientes'
-        icon={CarIcon}
-      />
+
+      <DrawerTab title='Gerenciar' icon={GerenciarIcon} >
+        <DrawerButton
+          to='/frota'
+          text='Frota'
+          icon={FrotaIcon}
+        />
+        <DrawerButton
+          to='/funcionarios'
+          text='Funcionários'
+          icon={PeopleIcon}
+        />
+        <DrawerButton
+          to='/clientes'
+          text='Clientes'
+          icon={CarIcon}
+        />
+      </DrawerTab>
+
       <DrawerButton
         to='/servico'
         text='Servico'
         icon={ServiceIcon}
-      />
-      <DrawerButton
-        to='/frota'
-        text='Frota'
-        icon={FrotaIcon}
       />
     </AppNav>
 

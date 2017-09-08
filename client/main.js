@@ -16,7 +16,7 @@ injectOnTouchTapPlugin()
 Meteor.startup(() => {
   render(
     <BrowserRouter>
-      <MuiThemeProvider theme={theme}>
+      <MuiThemeProvider muiTheme={theme}>
         <App />
       </MuiThemeProvider>
     </BrowserRouter>,

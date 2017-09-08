@@ -13,6 +13,7 @@ import Funcionarios from './pages/Funcionarios.jsx'
 import Clientes from './pages/Clientes.jsx'
 import Servico from './pages/Servico.jsx'
 import Frota from './pages/Frota.jsx'
+import Assistencia from './pages/Assistencia.jsx'
 
 /* Icons Imports */
 import HomeIcon from 'material-ui-icons/Home'
@@ -20,7 +21,7 @@ import PeopleIcon from 'material-ui-icons/People'
 import CarIcon from 'material-ui-icons/DirectionsCar'
 import ServiceIcon from 'material-ui-icons/Work'
 import FrotaIcon from 'material-ui-icons/LocalShipping'
-import GerenciarIcon from 'material-ui-icons/ImportContacts'
+import AssistenciaIcon from 'material-ui-icons/ImportContacts'
 
 const App = () => (
   <div>
@@ -32,7 +33,13 @@ const App = () => (
         icon={HomeIcon}
       />
 
-      <DrawerTab title='Gerenciar' icon={GerenciarIcon} >
+      <DrawerButton
+        to='/servico'
+        text='Servico'
+        icon={ServiceIcon}
+      />
+
+      <DrawerTab title='Gerenciar' >
         <DrawerButton
           to='/frota'
           text='Frota'
@@ -48,13 +55,13 @@ const App = () => (
           text='Clientes'
           icon={CarIcon}
         />
+        <DrawerButton
+          to='/assistencia'
+          text='Assistencia'
+          icon={AssistenciaIcon}
+        />
       </DrawerTab>
 
-      <DrawerButton
-        to='/servico'
-        text='Servico'
-        icon={ServiceIcon}
-      />
     </AppNav>
 
     <div className='app-content'>
@@ -64,6 +71,7 @@ const App = () => (
         <Route path='/clientes' component={Clientes} />
         <Route path='/servico' component={Servico} />
         <Route path='/frota' component={Frota} />
+        <Route path='/assistencia' component={Assistencia} />
 
         /* Redirect unknown rotes to home*/
         <Route component={Home} />

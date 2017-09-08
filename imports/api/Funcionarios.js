@@ -17,7 +17,8 @@ export const schema = new Schema({
   occupation: {
     type: String,
     label: 'Cargo',
-    optional: false
+    optional: false,
+    allowedValues: ['Gerente', 'Operador', 'Motorista']
   },
   dob: {
     type: Date,

@@ -6,8 +6,6 @@ import { ListItem } from 'material-ui/List'
 const styleSheet = {
   nav: {
     color: 'rgb(117, 117, 117)',
-    padding: 'none',
-    margin: 'none',
     textDecoration: 'none'
   }
 }
@@ -17,7 +15,7 @@ const DrawerTab = ({children, title, icon}) => {
     <ListItem
       primaryText={title}
       primaryTogglesNestedList
-      leftAvatar={createElement(icon, styleSheet.nav)}
+      leftAvatar={icon ? createElement(icon, styleSheet.nav) : null}
       nestedItems={children}
     />
   )
@@ -25,7 +23,10 @@ const DrawerTab = ({children, title, icon}) => {
 
 DrawerTab.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOf(
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element)
+  ),
   icon: PropTypes.element
 }
 

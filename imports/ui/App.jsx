@@ -14,6 +14,7 @@ import Clientes from './pages/Clientes.jsx'
 import Servico from './pages/Servico.jsx'
 import Frota from './pages/Frota.jsx'
 import Assistencia from './pages/Assistencia.jsx'
+import Cargos from './pages/Cargos.jsx'
 
 /* Icons Imports */
 import HomeIcon from 'material-ui-icons/Home'
@@ -62,6 +63,13 @@ const App = () => (
         />
       </DrawerTab>
 
+      {/* <DrawerTab title='Área do Administrador'>
+      </DrawerTab> */}
+      <DrawerButton
+        to='/cargos'
+        text='Cargos'
+      />
+
     </AppNav>
 
     <div className='app-content'>
@@ -72,6 +80,7 @@ const App = () => (
         <Route path='/servico' component={Servico} />
         <Route path='/frota' component={Frota} />
         <Route path='/assistencia' component={Assistencia} />
+        <Route path='/cargos' component={Cargos} />
 
         /* Redirect unknown rotes to home*/
         <Route component={Home} />

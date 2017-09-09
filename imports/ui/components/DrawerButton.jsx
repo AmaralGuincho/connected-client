@@ -28,7 +28,7 @@ const DrawerButton = props => {
     >
       <MenuItem
         primaryText={text}
-        leftIcon={createElement(icon)}
+        leftIcon={icon ? createElement(icon) : null}
         onTouchTap={event => onTouchTap(event)}
       />
 

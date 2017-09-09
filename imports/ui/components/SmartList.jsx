@@ -59,7 +59,7 @@ class SmartList extends Component {
         <TableRow key={`${index} ${item['id']}`}>
           {showProps.map(property => (
             <TableRowColumn key={item['_id']}>
-              {item[property] || '--'}
+              <span>{item[property] || '--'}</span>
             </TableRowColumn>
           ))}
         </TableRow>

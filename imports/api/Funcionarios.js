@@ -4,6 +4,11 @@ import Schema from './BaseSchema'
 export const api = new Mongo.Collection('Funcionarios')
 
 export const schema = new Schema({
+  active: {
+    type: Boolean,
+    label: 'Funcionário Ativo',
+    defaultValue: true
+  },
   name: {
     type: String,
     optional: false,
@@ -17,8 +22,7 @@ export const schema = new Schema({
   occupation: {
     type: String,
     label: 'Cargo',
-    optional: false,
-    allowedValues: ['Gerente', 'Operador', 'Motorista']
+    optional: false
   },
   dob: {
     type: Date,
@@ -64,11 +68,6 @@ export const schema = new Schema({
       rows: 1,
       rowsMax: 4
     }
-  },
-  active: {
-    type: Boolean,
-    label: 'Funcionário Ativo',
-    defaultValue: true
   }
 })
 
